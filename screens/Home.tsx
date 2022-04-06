@@ -1,36 +1,24 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {View} from 'react-native';
 import axios from 'axios';
 import NewsList from '../components/NewsList';
+import NewsContext from '../context/NewsContext';
+import NewsContextModel from '../models/newsContext';
 
 const Home: React.FC = () => {
   //   const NEWS_API_URL = process.env.REACT_APP_NEWS_API_URL;
   //   const NEWS_API_KEY = process.env.REACT_APP_NEWS_API_KEY;
-
-  const [articles, setArticles] = useState([]);
+  const {articles, fetchArticles} = useContext(NewsContext) as NewsContextModel;
 
   useEffect(() => {
-    async function getArticles() {
-      try {
-        await axios
-          .get('https://newsapi.org/v2/top-headlines', {
-            params: {
-              country: 'us',
-              apikey: 'fe7b7fb5b50a47819d4720f613f9d963',
-            },
-          })
-          .then(response => {
-            setArticles(response.data.articles);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    fetchArticles();
+  }, [fetchArticles]);
 
-    getArticles();
-  }, []);
-
-  return <NewsList articles={articles} />;
+  return (
+    <View>
+      <NewsList articles={articles} />
+    </View>
+  );
 };
 
 export default Home;
