@@ -17,7 +17,7 @@ const App: React.FC = () => {
             component={Home}
             options={{title: 'Top News'}}
           />
-          <Stack.Screen name="Post">{props => <Post />}</Stack.Screen>
+          <Stack.Screen name="Post" component={Post} />
         </Stack.Navigator>
       </NavigationContainer>
     </NewsProvider>

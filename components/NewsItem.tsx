@@ -1,33 +1,49 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import Article from '../models/article';
 
 interface Props {
   article: Article;
+  navigation: any;
 }
 
-const NewsItem: React.FC<Props> = ({article}) => {
+const NewsItem: React.FC<Props> = ({article, navigation}) => {
   return (
-    <View style={styles.newsItem}>
+    <TouchableOpacity
+      style={styles.newsItem}
+      onPress={() =>
+        navigation.navigate('Post', {
+          url: article.url,
+        })
+      }>
       <Image style={styles.itemImg} source={{uri: article.urlToImage}} />
       <Text style={styles.itemTitle}>{article.title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   newsItem: {
-    backgroundColor: '#1E1D1E',
+    backgroundColor: '#fff',
     borderRadius: 10,
+    display: 'flex',
+    elevation: 4,
+    flexDirection: 'row',
     marginVertical: 10,
-    width: '90%',
+    width: '70%',
   },
   itemImg: {
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    marginRight: 10,
     width: 100,
-    height: 100,
+    height: 110,
   },
   itemTitle: {
-    color: '#fff',
+    color: '#242424',
+    fontSize: 18,
+    paddingVertical: 5,
+    width: '90%',
   },
 });
 
