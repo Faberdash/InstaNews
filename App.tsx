@@ -1,24 +1,24 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from './screens/Home';
-import Post from './screens/Post';
+// import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NewsProvider} from './context/NewsContext';
+import BottomTabNav from './components/BottomTabNav';
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 
 const App: React.FC = () => {
   return (
     <NewsProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        {/* <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
             name="Home"
             component={Home}
-            options={{title: 'Top News'}}
+            options={{title: 'InstaNews'}}
           />
           <Stack.Screen name="Post" component={Post} />
-        </Stack.Navigator>
+        </Stack.Navigator> */}
+        <BottomTabNav />
       </NavigationContainer>
     </NewsProvider>
   );

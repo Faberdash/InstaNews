@@ -17,7 +17,7 @@ export const NewsProvider = ({children}) => {
         .get('https://newsapi.org/v2/top-headlines', {
           params: {
             country: 'us',
-            apikey: 'fe7b7fb5b50a47819d4720f613f9d963',
+            apikey: '1bb79eb7b41d4c8bb9153573cb47eb9f',
           },
         })
         .then(response => {
