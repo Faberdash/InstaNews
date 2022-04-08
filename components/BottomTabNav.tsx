@@ -1,19 +1,21 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
+import React, {useContext} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import Post from '../screens/Post';
 import Settings from '../screens/Settings';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import NewsContext from '../context/NewsContext';
+import NewsContextModel from '../models/newsContext';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNav: React.FC = () => {
+  const {darkModeOn} = useContext(NewsContext) as NewsContextModel;
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
+        tabBarActiveTintColor: `${darkModeOn ? '#e91e22' : '#00cc66'}`,
       }}>
       <Tab.Screen
         name="Home"

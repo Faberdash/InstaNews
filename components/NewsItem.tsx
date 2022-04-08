@@ -1,5 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  BackHandler,
+} from 'react-native';
+
+import {useTheme} from '@react-navigation/native';
 import Article from '../models/article';
 
 interface Props {
@@ -8,23 +16,26 @@ interface Props {
 }
 
 const NewsItem: React.FC<Props> = ({article, navigation}) => {
+  const {colors} = useTheme();
+
   return (
     <TouchableOpacity
-      style={styles.newsItem}
+      style={{backgroundColor: colors.card, ...styles.newsItem}}
       onPress={() =>
         navigation.navigate('Post', {
           url: article.url,
         })
       }>
       <Image style={styles.itemImg} source={{uri: article.urlToImage}} />
-      <Text style={styles.itemTitle}>{article.title}</Text>
+      <Text style={{color: colors.text, ...styles.itemTitle}}>
+        {article.title}
+      </Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   newsItem: {
-    backgroundColor: '#fff',
     borderRadius: 10,
     display: 'flex',
     elevation: 4,
@@ -40,7 +51,6 @@ const styles = StyleSheet.create({
     height: 110,
   },
   itemTitle: {
-    color: '#242424',
     fontSize: 18,
     paddingVertical: 5,
     width: '90%',

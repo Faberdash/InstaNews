@@ -6,6 +6,8 @@ import {
   Dimensions,
   StyleSheet,
 } from 'react-native';
+import {useTheme} from '@react-navigation/native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import NewsList from '../components/NewsList';
 import NewsContext from '../context/NewsContext';
 import NewsContextModel from '../models/newsContext';
@@ -23,6 +25,8 @@ const Home: React.FC = ({navigation}) => {
 
   const [headerText, setHeaderText] = useState<string>('Top Headlines');
 
+  const {colors} = useTheme();
+
   useEffect(() => {
     fetchArticles();
   }, [fetchArticles]);
@@ -36,7 +40,7 @@ const Home: React.FC = ({navigation}) => {
   return (
     <View>
       {/* <SearchBar /> */}
-      <Text style={styles.header}>{headerText}</Text>
+      <Text style={{color: colors.text, ...styles.header}}>{headerText}</Text>
       <NewsList articles={articles} navigation={navigation} />
     </View>
   );
@@ -50,7 +54,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    color: '#242424',
     fontSize: 22,
     fontWeight: '700',
     marginTop: 20,

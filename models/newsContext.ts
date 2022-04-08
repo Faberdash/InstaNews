@@ -6,4 +6,6 @@ export default interface NewsContextModel {
   setArticles: React.Dispatch<React.SetStateAction<Article[]>>;
   isLoading: boolean;
   fetchArticles: () => void;
+  darkModeOn: boolean;
+  setDarkModeOn: React.Dispatch<React.SetStateAction<boolean>>;
 }

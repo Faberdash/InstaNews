@@ -8,6 +8,7 @@ const NewsContext = React.createContext<NewsContextModel | null>(null);
 export const NewsProvider = ({children}) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [darkModeOn, setDarkModeOn] = useState<boolean>(false);
 
   // Fetch articles from News API
   const fetchArticles = async () => {
@@ -37,7 +38,9 @@ export const NewsProvider = ({children}) => {
       value={{
         articles,
         isLoading,
+        darkModeOn,
         setArticles,
+        setDarkModeOn,
         fetchArticles,
       }}>
       {children}
