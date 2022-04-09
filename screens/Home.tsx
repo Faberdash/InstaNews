@@ -18,7 +18,7 @@ const deviceWidth = Dimensions.get('window').width;
 const Home: React.FC = ({navigation}) => {
   //   const NEWS_API_URL = process.env.REACT_APP_NEWS_API_URL;
   //   const NEWS_API_KEY = process.env.REACT_APP_NEWS_API_KEY;
-  const {articles, isLoading, fetchArticles, t, changeLanguage} = useContext(
+  const {articles, fetchArticles, t} = useContext(
     NewsContext,
   ) as NewsContextModel;
 

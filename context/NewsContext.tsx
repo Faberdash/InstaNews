@@ -20,18 +20,16 @@ export const NewsProvider = ({children}) => {
 
   const [articles, setArticles] = useState<Article[]>([]);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const [darkModeOn, setDarkModeOn] = useState<boolean>(false);
 
   // Fetch articles from News API
   const fetchArticles = async () => {
-    setIsLoading(true);
     try {
       await axios
         .get('https://newsapi.org/v2/top-headlines', {
           params: {
             country: 'us',
+            // API key should be later moved to a .config file
             apikey: '1bb79eb7b41d4c8bb9153573cb47eb9f',
           },
         })
@@ -39,11 +37,9 @@ export const NewsProvider = ({children}) => {
           if (response.status === 200) {
             setArticles(response.data.articles);
           }
-          setIsLoading(false);
         });
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
     }
   };
 
@@ -51,7 +47,6 @@ export const NewsProvider = ({children}) => {
     <NewsContext.Provider
       value={{
         articles,
-        isLoading,
         darkModeOn,
         t,
         language,
