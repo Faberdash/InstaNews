@@ -10,7 +10,7 @@ import NewsContextModel from '../models/newsContext';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNav: React.FC = () => {
-  const {darkModeOn} = useContext(NewsContext) as NewsContextModel;
+  const {darkModeOn, t} = useContext(NewsContext) as NewsContextModel;
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -22,7 +22,7 @@ const BottomTabNav: React.FC = () => {
         component={Home}
         options={{
           title: 'InstaNews',
-          tabBarLabel: 'News',
+          tabBarLabel: `${t('news')}`,
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons
               name="newspaper-variant-outline"
@@ -36,7 +36,8 @@ const BottomTabNav: React.FC = () => {
         name="Post"
         component={Post}
         options={{
-          tabBarLabel: 'Last Viewed',
+          title: `${t('post')}`,
+          tabBarLabel: `${t('last viewed')}`,
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons
               name="arrow-u-left-top"
@@ -50,7 +51,8 @@ const BottomTabNav: React.FC = () => {
         name="Settings"
         component={Settings}
         options={{
-          tabBarLabel: 'Settings',
+          title: `${t('settings')}`,
+          tabBarLabel: `${t('settings')}`,
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="cog" color={color} size={size} />
           ),

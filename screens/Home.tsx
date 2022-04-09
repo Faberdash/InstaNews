@@ -7,7 +7,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import {useTheme} from '@react-navigation/native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import NewsList from '../components/NewsList';
 import NewsContext from '../context/NewsContext';
 import NewsContextModel from '../models/newsContext';
@@ -19,11 +18,11 @@ const deviceWidth = Dimensions.get('window').width;
 const Home: React.FC = ({navigation}) => {
   //   const NEWS_API_URL = process.env.REACT_APP_NEWS_API_URL;
   //   const NEWS_API_KEY = process.env.REACT_APP_NEWS_API_KEY;
-  const {articles, isLoading, fetchArticles} = useContext(
+  const {articles, isLoading, fetchArticles, t, changeLanguage} = useContext(
     NewsContext,
   ) as NewsContextModel;
 
-  const [headerText, setHeaderText] = useState<string>('Top Headlines');
+  const [headerText, setHeaderText] = useState<string>('top headlines');
 
   const {colors} = useTheme();
 
@@ -40,7 +39,9 @@ const Home: React.FC = ({navigation}) => {
   return (
     <View>
       {/* <SearchBar /> */}
-      <Text style={{color: colors.text, ...styles.header}}>{headerText}</Text>
+      <Text style={{color: colors.text, ...styles.header}}>
+        {t('top headlines')}
+      </Text>
       <NewsList articles={articles} navigation={navigation} />
     </View>
   );

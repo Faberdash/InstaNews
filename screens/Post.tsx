@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import WebView from 'react-native-webview';
 import {useTheme} from '@react-navigation/native';
+import NewsContext from '../context/NewsContext';
+import NewsContextModel from '../models/newsContext';
 
 const Post: React.FC = ({route}) => {
   const {colors} = useTheme();
+
+  const {t} = useContext(NewsContext) as NewsContextModel;
 
   if (route.params === undefined) {
     return (
       <View style={styles.messageContainer}>
         <Text style={{color: colors.text, ...styles.messageText}}>
-          {' '}
-          No recently viewed articles{' '}
+          {t('no recently viewed articles')}
         </Text>
       </View>
     );

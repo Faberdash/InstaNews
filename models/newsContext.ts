@@ -8,4 +8,7 @@ export default interface NewsContextModel {
   fetchArticles: () => void;
   darkModeOn: boolean;
   setDarkModeOn: React.Dispatch<React.SetStateAction<boolean>>;
+  t: TFunction<'translation', undefined>;
+  language: string;
+  changeLanguage: (value: any) => void;
 }
